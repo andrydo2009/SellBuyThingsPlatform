@@ -77,11 +77,11 @@ public class CommentServiceImpl implements CommentService {
     @Override
     @Transactional
     public Comment addComment(Integer id, CreateOrUpdateComment createOrUpdateComment) {
+        UserEntity userEntity = userRepository.findByEmail(userDetails.getUsername())
+                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
         AdEntity adEntity = adRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("Advertisement not found"));
         CommentEntity commentEntity = commentMapper.toCommentEntity(createOrUpdateComment, new CommentEntity());
-        UserEntity userEntity = userRepository.findByEmail(userDetails.getUsername())
-                .orElseThrow(() -> new UsernameNotFoundException(USER_NOT_FOUND));
         commentEntity.setUserEntity(userEntity);
         commentEntity.setAdEntity(adEntity);
         log.info("A comment was created in database. " + LocalDate.now());
