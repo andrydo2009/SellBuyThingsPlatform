@@ -22,7 +22,7 @@ public class TestService {
     public UserEntity createTestUser() {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail("testEmail@gmail.com");
-        userEntity.setPassword("$2a$12$lV7lTQdu3Elm7m3bdAAxWOs3GjvMSIYUYE7gGMqO/KF2NLakrCWdu");
+        userEntity.setPassword("$2a$12$nbPi.P3rcqDsL4xDcVru2OXnqZX81vVvUvaFRONeYDnyaeK4c/TbS");
         userEntity.setFirstName("testFirstName");
         userEntity.setLastName("testLastName");
         userEntity.setPhoneUser("+77777777777");
@@ -35,14 +35,13 @@ public class TestService {
     public AdEntity createTestAd() {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail("testEmail@gmail.com");
-        userEntity.setPassword("$2a$12$mLIBSG3lM4vzeBkJUc2GG.QvGAOPvieqyhaCgXyVw4GjF5bvxGTXK");
+        userEntity.setPassword("$2a$12$nbPi.P3rcqDsL4xDcVru2OXnqZX81vVvUvaFRONeYDnyaeK4c/TbS");
         userEntity.setFirstName("testFirstName");
         userEntity.setLastName("testLastName");
         userEntity.setPhoneUser("+77777777777");
         userEntity.setImagePath("/users/image/" + userEntity.getId()); // not sure
         userEntity.setRole(Role.USER);
         userRepository.save(userEntity);
-
 
         AdEntity adEntity = new AdEntity();
         adEntity.setDescription("testDescription");
@@ -57,7 +56,7 @@ public class TestService {
     public CommentEntity createTestComment() {
         UserEntity userEntity = new UserEntity();
         userEntity.setEmail("testEmail@gmail.com");
-        userEntity.setPassword("$2a$12$mLIBSG3lM4vzeBkJUc2GG.QvGAOPvieqyhaCgXyVw4GjF5bvxGTXK");
+        userEntity.setPassword("$2a$12$nbPi.P3rcqDsL4xDcVru2OXnqZX81vVvUvaFRONeYDnyaeK4c/TbS");
         userEntity.setFirstName("testFirstName");
         userEntity.setLastName("testLastName");
         userEntity.setPhoneUser("+77777777777");
