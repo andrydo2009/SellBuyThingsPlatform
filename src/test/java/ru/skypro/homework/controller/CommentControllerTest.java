@@ -59,9 +59,9 @@ class CommentControllerTest {
         CommentEntity commentEntity = testService.createTestComment();
 
         mockMvc.perform(MockMvcRequestBuilders.get("/ads/{id}/comments", commentEntity.getAdEntity().getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.count").value(1))
@@ -84,9 +84,9 @@ class CommentControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.post("/ads/{id}/comments", adEntity.getId())
                         .content(objectMapper.writeValueAsString(createOrUpdateComment))
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.author").value(adEntity.getUserEntity().getId()))
@@ -105,9 +105,9 @@ class CommentControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.delete("/ads/{adId}/comments/{commentId}",
                                 commentEntity.getAdEntity().getId(), commentEntity.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8)))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8)))
                 .andExpect(status().isOk());
 
         Assertions.assertFalse(commentRepository.findById(commentEntity.getId()).isPresent());
@@ -124,9 +124,9 @@ class CommentControllerTest {
 
         mockMvc.perform(MockMvcRequestBuilders.patch("/ads/{adId}/comments/{commentId}",
                 commentEntity.getAdEntity().getId(), commentEntity.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8))
                 .content(objectMapper.writeValueAsString(createOrUpdateComment))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())

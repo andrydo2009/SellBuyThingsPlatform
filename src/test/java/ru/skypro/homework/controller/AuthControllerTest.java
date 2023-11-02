@@ -52,9 +52,9 @@ class AuthControllerTest {
         login.setUsername("testEmail@gmail.com");
 
         mockMvc.perform(MockMvcRequestBuilders.post("/login")
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8))
                 .content(objectMapper.writeValueAsString(login))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())

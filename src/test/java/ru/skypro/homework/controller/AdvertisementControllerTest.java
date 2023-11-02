@@ -86,9 +86,9 @@ class AdvertisementControllerTest {
         mockMvc.perform(multipart("/ads")
                 .file(request)
                 .file(image)
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8)))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.author").value(userEntity.getId()))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.price").value(44444))
@@ -144,9 +144,9 @@ class AdvertisementControllerTest {
         CreateOrUpdateAd createOrUpdateAd = new CreateOrUpdateAd("updatedTitle", 77777, "updatedDescription");
 
         mockMvc.perform(MockMvcRequestBuilders.patch("/ads/{id}", adEntity.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8))
                 .content(objectMapper.writeValueAsString(createOrUpdateAd))
                 .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
@@ -164,9 +164,9 @@ class AdvertisementControllerTest {
         AdEntity adEntity = testService.createTestAd();
 
         mockMvc.perform(MockMvcRequestBuilders.get("/ads/me")
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8)))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$.count").value(1))
                 .andExpect(MockMvcResultMatchers.jsonPath("$.results[0].author").value(adEntity.getUserEntity().getId()))
@@ -188,9 +188,9 @@ class AdvertisementControllerTest {
 
         mockMvc.perform(multipart(HttpMethod.PATCH, "/ads/{id}/image", adEntity.getId())
                 .file(image)
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8)))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(status().isOk());
 
@@ -204,9 +204,9 @@ class AdvertisementControllerTest {
         AdEntity adEntity = testService.createTestAd();
 
         mockMvc.perform(get("/ads/image/{adId}", adEntity.getId())
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8)))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8)))
                 .andDo(MockMvcResultHandlers.print())
                 .andExpect(MockMvcResultMatchers.jsonPath("$").value("/ads/image/" + adEntity.getId())) // not sure
                 .andExpect(status().isOk());
@@ -219,9 +219,9 @@ class AdvertisementControllerTest {
         AdEntity adEntity = testService.createTestAd();
 
         mockMvc.perform(MockMvcRequestBuilders.get("/ads/find/{title}", adEntity.getTitle())
-                        .header(HttpHeaders.AUTHORIZATION, "Basic " +
-                                HttpHeaders.encodeBasicAuth("testEmail@gmail.com", "testPassword",
-                                        StandardCharsets.UTF_8))
+                        .header(HttpHeaders.AUTHORIZATION,
+                                "Basic " + HttpHeaders.encodeBasicAuth("testEmail@gmail.com",
+                                        "testPassword", StandardCharsets.UTF_8))
                         .contentType(objectMapper.writeValueAsString(adEntity.getTitle()))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andDo(MockMvcResultHandlers.print())
